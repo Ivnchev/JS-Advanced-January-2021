@@ -2,7 +2,7 @@ function foo(x,y, color) {
     return {
         width : x,
         height : y,
-        color: color,
+        color: color[0].toUpperCase() + color.slice(1),
         calcArea() {
             return this.width * this.height
         }

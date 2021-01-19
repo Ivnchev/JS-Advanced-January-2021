@@ -1,5 +1,37 @@
-function foo(data) {
-    return JSON.parse(data).reduce( (a,b) => ({...a,...b}) ,{})
+function foo(library, orders) {
+    return orders.map( x => {
+        return Object.assign({}, x.template, x.parts.reduce( ( a,c ) =>  Object.assign(a, {[c]: library[c]}) , {}))
+    })
 }
 
-console.log( foo(`[{"canMove": true},{"canMove":true, "doors": 4},{"capacity": 5}]`) );
+const library = {
+    print: function () {
+      console.log(`${this.name} is printing a page`);
+    },
+    scan: function () {
+      console.log(`${this.name} is scanning a document`);
+    },
+    play: function (artist, track) {
+      console.log(`${this.name} is playing '${track}' by ${artist}`);
+    },
+  };
+  const orders = [
+    {
+      template: { name: 'ACME Printer'},
+      parts: ['print']      
+    },
+    {
+      template: { name: 'Initech Scanner'},
+      parts: ['scan']      
+    },
+    {
+      template: { name: 'ComTron Copier'},
+      parts: ['scan', 'print']      
+    },
+    {
+      template: { name: 'BoomBox Stereo'},
+      parts: ['play']      
+    },
+  ];
+  const products = foo(library, orders);
+console.log(products);
