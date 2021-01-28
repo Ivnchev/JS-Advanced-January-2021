@@ -1,9 +1,8 @@
-function foo(input) {
-    let r = Number(input.pop())
-    for (let i = 0; i < r; i++) {
-        input.unshift(input.pop())
+function solve(arr , rotations) {
+    for(let i=0;i<rotations;i++) {
+        arr.unshift(arr.pop());
     }
-    console.log(input.join(' '));
+    return arr.join(" ")
 }
-foo(['1', '2', '3', '4', '2'])
-foo(['Banana', 'Orange', 'Coconut', 'Apple', '15'])
+foo(['1', '2', '3', '4'], 2)
+foo(['Banana', 'Orange', 'Coconut', 'Apple'], 15)
