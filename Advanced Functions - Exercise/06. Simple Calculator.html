@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <input type="text" id="num1" />
+    <input type="text" id="num2" />
+    <input type="text" id="result" readonly />
+    <br>
+    <button id="sumButton">
+        Sum</button>
+    <button id="subtractButton">
+        Subtract</button>
+    <script>
+
+        function builder() {
+            let firstEl
+            let secondEl
+            let resultEl 
+            return {
+                init: (sOne, sTwo, result) => {
+                    firstEl = document.querySelector(sOne)
+                    secondEl = document.querySelector(sTwo)
+                    resultEl = document.querySelector(result)
+                },
+                add: () => resultEl.value = Number(firstEl.value) + Number(secondEl.value),
+                subtract: () => resultEl.value = Number(firstEl.value) - Number(secondEl.value),
+            }
+        }
+        let sum = builder();
+        sum.init('#num1', '#num2', '#result')
+        let sumBtn = document.querySelector('#sumButton')
+        let subtractBtn = document.querySelector('#subtractButton')
+        sumBtn.addEventListener('click', () => { sum.add() })
+        subtractBtn.addEventListener('click', () => { sum.subtract() })
+    </script>
+</body>
+
+</html>
